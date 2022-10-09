@@ -10,12 +10,19 @@ import Foundation
 //Ana protokoller
 
 // view  ->  presenter  ->  Interactor
-
+//rxswift
 protocol ViewToPresenterProtocol{
-    
+    var interactor : PresenterToInteractorProtocol?{get set}
+    var view : PresenterToViewProtocol? {get set}
+    func toplamaYap(sayi1:String,sayi2:String)
+    func carpmaYap(sayi1:String,sayi2:String)
 }
 
-protocol PresenterToInteractor{
+protocol PresenterToInteractorProtocol{
+    var presenter : InteractorToPresenterProtocol?{get set}
+    
+    func topla(sayi1:String,sayi2:String)
+    func carp(sayi1:String,sayi2:String)
     
 }
 
@@ -25,11 +32,11 @@ protocol PresenterToInteractor{
 //Taşıyıcı Protokoller
 // view  <-  presenter  <-  Interactor
 protocol InteractorToPresenterProtocol{
-    
+    func presenteraVeriGonder(sonuc:String)
 }
 
 protocol PresenterToViewProtocol{
-    
+    func vieweVeriGonder(sonuc:String)
 }
 
 
@@ -37,5 +44,5 @@ protocol PresenterToViewProtocol{
 //Router
 
 protocol PresenterToRouterProtocol{
-    
+    static func createModule(ref:ViewController)
 }
